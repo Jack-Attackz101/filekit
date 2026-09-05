@@ -3,7 +3,7 @@ import SwiftUI
 @main
 struct FilekitApp: App {
     var body: some Scene {
-        Window("Filekit", id: "main") {
+        Window(FilekitBrand.productName, id: "main") {
             ContentView()
         }
         .windowResizability(.contentSize)

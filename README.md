@@ -1,15 +1,47 @@
 # Filekit
 
-Filekit is a native macOS Finder utility from Mango Studios. Phase 0 proves one thing: a Finder right-click item that copies the selected file path(s) to the clipboard.
+Filekit is a native macOS Finder utility from Mango Studios.
 
-This is not a design pass. There is one menu item, **Copy Path**, and no extra Finder UI.
+**Phase 1.1 is a draft.** It is blocked on Ash’s Phase 0 Mac pass ([PR #1](https://github.com/Jack-Attackz101/filekit/pull/1)). Do not merge this polish until Phase 0 Copy Path is confirmed on a Mac. Phase 0 itself is unchanged on its own branch.
 
-## What Phase 0 includes
+Product name is **Filekit**. Never Handy.
 
-- A minimal host app (`com.mangostudios.filekit`) so macOS can register the extension
-- A Finder Sync extension (`com.mangostudios.filekit.FinderSync`) — Apple’s current API for Finder contextual menu items (`FIFinderSync`)
-- One right-click action: **Copy Path**
-- Absolute POSIX path(s) written to `NSPasteboard`; multiple selected items are joined with newlines
+## What Phase 1.1 polishes
+
+- Native Finder parent: **Filekit ›**
+- First branded child: **Copy Path** — same Phase 0 behavior (absolute POSIX path(s) to the pasteboard; multiple items joined with newlines)
+- Custom filled mango icon on the Copy Path row (`NSMenuItem.image`, not a template glyph)
+- Host app cream stamp panel: cream `#FFF9ED`, 2px ink `#24211D` outline, 16px corners, print-stamp shadow `4px 4px 0` ink, mango `#FFC928` hover, canonical mango studios footer
+- No extra Finder actions beyond Copy Path
+
+## Draft until Phase 0 passes
+
+| Gate | Status |
+| --- | --- |
+| Phase 0 Finder Copy Path on a Mac | Waiting on Ash |
+| Merge Phase 1.1 | Blocked |
+| Change Phase 0 behavior as the only action | Do not |
+
+If Phase 0 fails, fix Phase 0 first. This branch is polish on top of Copy Path, not a replacement for it.
+
+## Finder can vs cannot
+
+Apple’s Finder Sync API (`FIFinderSync.menu(for:)`) returns an `NSMenu` that **Finder** draws. That is enough for structure and a row icon. It is not enough for handmade chrome.
+
+| Surface | What you get |
+| --- | --- |
+| **Finder right-click** | Native system menu. Parent **Filekit ›**, child **Copy Path**, filled mango `NSMenuItem.image` if Finder keeps the bitmap. Finder may also draw its own submenu chevron next to the `›`. |
+| **Finder cannot show** | Cream panel, 2px ink outline, 16px corner radius, print-stamp shadow, mango hover fill, or a custom footer. Custom `NSMenuItem.view` chrome does not survive into Finder’s menu. |
+| **Host app** | The stamped cream panel (`FilekitStampPanel`) — the look Sol locked. Hover the Copy Path row for mango. The footer is the studio mark + **mango studios**. Clicking Copy Path in the host copies this app’s path so you can check pasteboard wiring; Finder still copies the selected items. |
+
+If the Copy Path icon is missing or goes monochrome, that is Finder flattening `NSMenuItem.image`, not a missing asset.
+
+## What Phase 0 still includes
+
+- A host app (`com.mangostudios.filekit`) so macOS can register the extension
+- A Finder Sync extension (`com.mangostudios.filekit.FinderSync`)
+- Absolute POSIX path(s) written to `NSPasteboard`; multiple selected items joined with newlines
+- Volume monitoring so the item can appear across disks
 
 ## Requirements
 
@@ -28,7 +60,7 @@ This repository was scaffolded so it opens on a Mac. It cannot be built on Linux
    - Enable **Automatically manage signing**
    - Choose your **Team**
    - Leave bundle IDs as `com.mangostudios.filekit` and `com.mangostudios.filekit.FinderSync` unless those IDs are already taken on your team
-5. Product → Run (⌘R). The Filekit window should appear. Running the host once registers the `.appex` with macOS.
+5. Product → Run (⌘R). The Filekit window should appear — cream paper, stamp panel, mango footer. Running the host once registers the `.appex` with macOS.
 
 ## Enable the Finder extension
 
@@ -57,15 +89,15 @@ The host app’s **Open System Settings** button jumps to Login Items & Extensio
 
 After enabling, you can quit Filekit. Finder loads the extension itself.
 
-## Test Copy Path (Phase 0 pass)
+## Test Copy Path (Phase 1.1)
 
 1. Open Finder and select one file.
 2. Right-click (or Control-click) the selection.
-3. Choose **Copy Path**. It should appear as a normal Finder menu item, not a branded submenu.
+3. Open **Filekit ›**, then choose **Copy Path**. It should be the first (and only) row under the parent.
 4. Paste into TextEdit, Notes, or Terminal. You should see the file’s absolute path, for example `/Users/you/Desktop/report.pdf`.
 5. Select two or more files, Copy Path again, and paste. Each path should be on its own line.
 
-That is the Phase 0 success criteria.
+Phase 0 success criteria still hold: the paths are correct. Phase 1.1 adds the **Filekit ›** parent and the branded host panel.
 
 ## Troubleshooting
 
@@ -89,6 +121,10 @@ That is the Phase 0 success criteria.
   ```
 - Avoid leaving old copies of Filekit.app around (DerivedData vs `/Applications`). One signed copy at a time is easiest.
 
+**I still see a flat Copy Path with no Filekit › parent**
+
+- You are running the Phase 0 build. This branch embeds the submenu in `FilekitFinderMenu`. Rebuild the **Filekit** scheme, then disable and re-enable the extension.
+
 **Signing errors in Xcode**
 
 - Both targets must use the same Team.
@@ -102,8 +138,10 @@ In Console.app, filter for `Filekit Finder Sync loaded from`. That log is printe
 
 ```
 Filekit.xcodeproj          Xcode project (open this)
-Filekit/                   Host app (registers the extension)
-FinderSync/                Finder Sync extension (Copy Path)
+Filekit/                   Host app (registers the extension + cream stamp preview)
+FinderSync/                Finder Sync extension (Filekit › / Copy Path)
+Shared/                    Brand tokens, Copy Path string, mango mark, menu factory
+scripts/                   Static Phase 1.1 checks (`python3 scripts/verify_phase_1_1.py`)
 ```
 
 Bundle IDs:
@@ -115,4 +153,4 @@ Bundle IDs:
 
 ## Why Finder Sync
 
-Apple still documents [Finder Sync](https://developer.apple.com/documentation/findersync/fifindersync) (`FIFinderSync`) as the way to add contextual menu items for selected Finder items. macOS Services and Quick Actions exist, but they land under Services / Quick Actions rather than as a plain right-click item. Phase 0 uses Finder Sync and monitors mounted volumes so the item can appear across disks (Finder Sync does not cross volume boundaries unless each volume is registered).
+Apple still documents [Finder Sync](https://developer.apple.com/documentation/findersync/fifindersync) (`FIFinderSync`) as the way to add contextual menu items for selected Finder items. macOS Services and Quick Actions exist, but they land under Services / Quick Actions rather than as a plain right-click item. Filekit uses Finder Sync and monitors mounted volumes so the item can appear across disks (Finder Sync does not cross volume boundaries unless each volume is registered).

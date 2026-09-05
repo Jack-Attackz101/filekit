@@ -14,6 +14,17 @@
 		FF2000000000000000000005 /* FinderSync.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000009 /* FinderSync.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FF2000000000000000000006 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF100000000000000000000A /* Cocoa.framework */; };
 		FF2000000000000000000007 /* FinderSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF100000000000000000000B /* FinderSync.framework */; };
+		FF2000000000000000000008 /* FilekitBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000010 /* FilekitBrand.swift */; };
+		FF2000000000000000000009 /* FilekitBrand.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000010 /* FilekitBrand.swift */; };
+		FF200000000000000000000A /* FilekitCopyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000011 /* FilekitCopyPath.swift */; };
+		FF200000000000000000000B /* FilekitCopyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000011 /* FilekitCopyPath.swift */; };
+		FF200000000000000000000C /* MangoGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000012 /* MangoGeometry.swift */; };
+		FF200000000000000000000D /* MangoGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000012 /* MangoGeometry.swift */; };
+		FF200000000000000000000E /* FilekitMenuIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000013 /* FilekitMenuIcon.swift */; };
+		FF200000000000000000000F /* FilekitMenuIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000013 /* FilekitMenuIcon.swift */; };
+		FF2000000000000000000010 /* FilekitFinderMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000014 /* FilekitFinderMenu.swift */; };
+		FF2000000000000000000011 /* FilekitFinderMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000014 /* FilekitFinderMenu.swift */; };
+		FF2000000000000000000012 /* FilekitStampPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000015 /* FilekitStampPanel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +63,12 @@
 		FF1000000000000000000009 /* FinderSync.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FinderSync.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF100000000000000000000A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		FF100000000000000000000B /* FinderSync.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FinderSync.framework; path = System/Library/Frameworks/FinderSync.framework; sourceTree = SDKROOT; };
+		FF1000000000000000000010 /* FilekitBrand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilekitBrand.swift; sourceTree = "<group>"; };
+		FF1000000000000000000011 /* FilekitCopyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilekitCopyPath.swift; sourceTree = "<group>"; };
+		FF1000000000000000000012 /* MangoGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangoGeometry.swift; sourceTree = "<group>"; };
+		FF1000000000000000000013 /* FilekitMenuIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilekitMenuIcon.swift; sourceTree = "<group>"; };
+		FF1000000000000000000014 /* FilekitFinderMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilekitFinderMenu.swift; sourceTree = "<group>"; };
+		FF1000000000000000000015 /* FilekitStampPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilekitStampPanel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +97,7 @@
 				FF0000000000000000000003 /* Products */,
 				FF0000000000000000000004 /* Filekit */,
 				FF0000000000000000000005 /* FinderSync */,
+				FF0000000000000000000007 /* Shared */,
 				FF0000000000000000000006 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -98,6 +116,7 @@
 			children = (
 				FF1000000000000000000001 /* FilekitApp.swift */,
 				FF1000000000000000000002 /* ContentView.swift */,
+				FF1000000000000000000015 /* FilekitStampPanel.swift */,
 				FF1000000000000000000003 /* Assets.xcassets */,
 				FF1000000000000000000004 /* Filekit.entitlements */,
 			);
@@ -112,6 +131,18 @@
 				FF1000000000000000000007 /* FinderSync.entitlements */,
 			);
 			path = FinderSync;
+			sourceTree = "<group>";
+		};
+		FF0000000000000000000007 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				FF1000000000000000000010 /* FilekitBrand.swift */,
+				FF1000000000000000000011 /* FilekitCopyPath.swift */,
+				FF1000000000000000000012 /* MangoGeometry.swift */,
+				FF1000000000000000000013 /* FilekitMenuIcon.swift */,
+				FF1000000000000000000014 /* FilekitFinderMenu.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		FF0000000000000000000006 /* Frameworks */ = {
@@ -225,6 +256,12 @@
 			files = (
 				FF2000000000000000000001 /* FilekitApp.swift in Sources */,
 				FF2000000000000000000002 /* ContentView.swift in Sources */,
+				FF2000000000000000000012 /* FilekitStampPanel.swift in Sources */,
+				FF2000000000000000000008 /* FilekitBrand.swift in Sources */,
+				FF200000000000000000000A /* FilekitCopyPath.swift in Sources */,
+				FF200000000000000000000C /* MangoGeometry.swift in Sources */,
+				FF200000000000000000000E /* FilekitMenuIcon.swift in Sources */,
+				FF2000000000000000000010 /* FilekitFinderMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,6 +270,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF2000000000000000000004 /* FinderSync.swift in Sources */,
+				FF2000000000000000000009 /* FilekitBrand.swift in Sources */,
+				FF200000000000000000000B /* FilekitCopyPath.swift in Sources */,
+				FF200000000000000000000D /* MangoGeometry.swift in Sources */,
+				FF200000000000000000000F /* FilekitMenuIcon.swift in Sources */,
+				FF2000000000000000000011 /* FilekitFinderMenu.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

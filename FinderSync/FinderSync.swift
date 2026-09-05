@@ -1,7 +1,11 @@
 import Cocoa
 import FinderSync
 
-/// Finder Sync principal class. Adds a single contextual menu item: Copy Path.
+/// Finder Sync principal class. Phase 1.1: native Filekit › parent, Copy Path child.
+///
+/// What Finder can show: nested `NSMenu` titles and an `NSMenuItem.image`.
+/// What Finder cannot show: cream panel, ink outline, 16pt corners, print-stamp
+/// shadow, or mango hover. That chrome lives in the host `FilekitStampPanel`.
 final class FinderSync: FIFinderSync {
     override init() {
         super.init()
@@ -11,24 +15,20 @@ final class FinderSync: FIFinderSync {
     }
 
     override func menu(for menuKind: FIMenuKind) -> NSMenu {
-        let menu = NSMenu(title: "")
         guard menuKind == .contextualMenuForItems else {
-            return menu
+            return NSMenu(title: "")
         }
-
-        menu.addItem(
-            withTitle: "Copy Path",
-            action: #selector(copyPath(_:)),
-            keyEquivalent: ""
+        return FilekitFinderMenu.makeContextualMenu(
+            target: self,
+            copyPath: #selector(copyPath(_:))
         )
-        return menu
     }
 
     @objc private func copyPath(_ sender: AnyObject?) {
         let urls = currentSelectionURLs()
         guard !urls.isEmpty else { return }
 
-        let pasteboardString = urls.map(\.path).joined(separator: "\n")
+        let pasteboardString = FilekitCopyPath.pasteboardString(from: urls)
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         pasteboard.setString(pasteboardString, forType: .string)

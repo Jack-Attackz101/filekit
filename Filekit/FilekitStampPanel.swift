@@ -1,7 +1,7 @@
 import AppKit
 import SwiftUI
 
-/// SwiftUI wrappers for the shared AppKit studio tokens.
+/// SwiftUI wrappers for the Tess-locked AppKit tokens.
 enum FilekitTheme {
     static let cream = Color(nsColor: FilekitBrand.creamNS)
     static let ink = Color(nsColor: FilekitBrand.inkNS)
@@ -10,7 +10,7 @@ enum FilekitTheme {
     static let mango = Color(nsColor: FilekitBrand.mangoActionNS)
 }
 
-/// In-panel fruit mark: fruit `#FFE169` + leaf `#4BA33D`, no stroke.
+/// Footer mark: pale mango `#FFE169` + one detached leaf, no outline.
 struct FruitMark: View {
     var body: some View {
         Canvas { context, size in
@@ -27,17 +27,24 @@ struct FilekitStampPanel: View {
     @State private var isCopyPathHovering = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: FilekitBrand.spacing) {
+        VStack(alignment: .leading, spacing: 6) {
             Text(FilekitBrand.parentMenuTitle)
                 .font(.system(size: 26, weight: .heavy, design: .serif))
                 .tracking(-0.9)
                 .foregroundStyle(FilekitTheme.ink)
+                .padding(.bottom, 4)
 
             CopyPathPreviewRow(isHovering: $isCopyPathHovering)
 
+            ForEach(0..<FilekitBrand.reservedBlankRowCount, id: \.self) { _ in
+                BlankReservedRow()
+            }
+
             FilekitMangoFooter()
+                .padding(.top, 8)
         }
         .padding(FilekitBrand.spacing)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .background(
             FilekitTheme.cream,
             in: RoundedRectangle(cornerRadius: FilekitBrand.cornerRadius, style: .circular)
@@ -60,7 +67,7 @@ struct FilekitStampPanel: View {
     }
 }
 
-/// First branded row: Copy Path. Same pasteboard behavior as Finder (absolute paths).
+/// First real row: Copy Path. Full-row mango hover, ink text.
 private struct CopyPathPreviewRow: View {
     @Binding var isHovering: Bool
 
@@ -78,14 +85,8 @@ private struct CopyPathPreviewRow: View {
             .foregroundStyle(FilekitTheme.ink)
             .padding(.horizontal, 12)
             .padding(.vertical, 10)
-            .background(
-                isHovering ? FilekitTheme.mango : FilekitTheme.cream,
-                in: RoundedRectangle(cornerRadius: FilekitBrand.cornerRadius, style: .circular)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: FilekitBrand.cornerRadius, style: .circular)
-                    .strokeBorder(FilekitTheme.ink.opacity(isHovering ? 1 : 0.18), lineWidth: 1.5)
-            )
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(isHovering ? FilekitTheme.mango : Color.clear)
         }
         .buttonStyle(StampPressStyle())
         .onHover { isHovering = $0 }
@@ -102,31 +103,22 @@ private struct CopyPathPreviewRow: View {
     }
 }
 
-/// Canonical studio footer: fruit mark + lowercase mango studios + fine print.
+/// Reserved slots. Blank until Jack adds actions. Host-only — not in Finder.
+private struct BlankReservedRow: View {
+    var body: some View {
+        Color.clear
+            .frame(maxWidth: .infinity)
+            .frame(height: 38)
+            .accessibilityHidden(true)
+    }
+}
+
+/// Footer is only the pale mango + detached leaf. No outline, no wordmark.
 struct FilekitMangoFooter: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Rectangle()
-                .fill(FilekitTheme.ink)
-                .frame(height: FilekitBrand.outlineWidth)
-
-            HStack(alignment: .center, spacing: 10) {
-                FruitMark()
-                    .frame(width: 28, height: 40)
-
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(FilekitBrand.studioName)
-                        .font(.system(size: 14, weight: .heavy))
-                        .tracking(-0.45)
-                    Text("© 2026 \(FilekitBrand.studioName)")
-                        .font(.system(size: 11, weight: .medium))
-                        .opacity(0.7)
-                }
-                .foregroundStyle(FilekitTheme.ink)
-            }
-        }
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel(FilekitBrand.studioName)
+        FruitMark()
+            .frame(width: 36, height: 52)
+            .accessibilityLabel(FilekitBrand.studioName)
     }
 }
 

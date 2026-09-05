@@ -1,10 +1,11 @@
 import AppKit
 
-/// Native Finder Sync menu: `Filekit ›` parent with one child, Copy Path.
+/// Native Finder Sync menu: `Filekit ›` parent with one real child, Copy Path.
 ///
 /// Finder draws this as a system `NSMenu`. It will not paint a cream panel,
-/// 2px ink outline, 16pt corners, print-stamp shadow, or mango hover.
+/// 2px ink outline, 16pt corners, print-stamp shadow, mango hover, or footer.
 /// Those live in the host preview (`FilekitStampPanel`).
+/// Blank reserved rows stay out of Finder so they cannot be clicked.
 enum FilekitFinderMenu {
     static func makeContextualMenu(target: AnyObject, copyPath: Selector) -> NSMenu {
         let menu = NSMenu(title: "")

@@ -49,6 +49,8 @@ def main() -> None:
         "cornerRadius: CGFloat = 16",
         "outlineWidth: CGFloat = 2",
         "printShadowOffset: CGFloat = 4",
+        "reservedBlankRowCount = 3",
+        "0xFF / 255, green: 0xE1 / 255, blue: 0x69 / 255",
     ):
         if needle not in brand:
             fail(f"FilekitBrand.swift missing {needle!r}")
@@ -75,12 +77,24 @@ def main() -> None:
     if "withTitle: \"Copy Path\"" in finder:
         fail("FinderSync.swift still adds a flat Phase 0 Copy Path item")
 
+    icon = read("Shared/FilekitMenuIcon.swift")
+    if "roundedRect" not in icon:
+        fail("Copy Path icon must be a filled rounded pictogram")
+    if "MangoGeometry" in icon:
+        fail("Copy Path icon must not use the footer mango stamp")
+    if icon.count("ctx.fillPath()") < 2:
+        fail("Copy Path pictogram must use 2–5 filled shapes")
+
     panel = read("Filekit/FilekitStampPanel.swift")
     for needle in (
         "FilekitStampPanel",
         "FilekitMangoFooter",
         "FilekitTheme.mango",
-        "FilekitBrand.studioName",
+        "BlankReservedRow",
+        "reservedBlankRowCount",
+        "isHovering ? FilekitTheme.mango : Color.clear",
+        "FilekitTheme.fruit",
+        "no outline",
     ):
         if needle not in panel:
             fail(f"FilekitStampPanel.swift missing {needle!r}")
@@ -92,6 +106,12 @@ def main() -> None:
         "Finder can vs cannot",
         "Filekit ›",
         "Never Handy",
+        "#FFF9ED",
+        "#24211D",
+        "#FFC928",
+        "#FFE169",
+        "blank until Jack",
+        "filled rounded pictograms",
     ):
         if needle not in readme:
             fail(f"README.md missing {needle!r}")

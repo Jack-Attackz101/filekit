@@ -11,7 +11,7 @@
 		FF2000000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000002 /* ContentView.swift */; };
 		FF2000000000000000000003 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000003 /* Assets.xcassets */; };
 		FF2000000000000000000004 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000005 /* FinderSync.swift */; };
-		FF2000000000000000000005 /* FinderSync.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000009 /* FinderSync.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		FF2000000000000000000005 /* FilekitFinderSync.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = FF1000000000000000000009 /* FilekitFinderSync.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FF2000000000000000000006 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF100000000000000000000A /* Cocoa.framework */; };
 		FF2000000000000000000007 /* FinderSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF100000000000000000000B /* FinderSync.framework */; };
 /* End PBXBuildFile section */
@@ -22,7 +22,7 @@
 			containerPortal = FF0000000000000000000001 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = FF4000000000000000000002;
-			remoteInfo = FinderSync;
+			remoteInfo = FilekitFinderSync;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -33,7 +33,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				FF2000000000000000000005 /* FinderSync.appex in Embed App Extensions */,
+				FF2000000000000000000005 /* FilekitFinderSync.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,9 +47,9 @@
 		FF1000000000000000000004 /* Filekit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Filekit.entitlements; sourceTree = "<group>"; };
 		FF1000000000000000000005 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
 		FF1000000000000000000006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FF1000000000000000000007 /* FinderSync.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FinderSync.entitlements; sourceTree = "<group>"; };
+		FF1000000000000000000007 /* FilekitFinderSync.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FilekitFinderSync.entitlements; sourceTree = "<group>"; };
 		FF1000000000000000000008 /* Filekit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Filekit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FF1000000000000000000009 /* FinderSync.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FinderSync.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF1000000000000000000009 /* FilekitFinderSync.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FilekitFinderSync.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF100000000000000000000A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		FF100000000000000000000B /* FinderSync.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FinderSync.framework; path = System/Library/Frameworks/FinderSync.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -79,7 +79,7 @@
 			children = (
 				FF0000000000000000000003 /* Products */,
 				FF0000000000000000000004 /* Filekit */,
-				FF0000000000000000000005 /* FinderSync */,
+				FF0000000000000000000005 /* FilekitFinderSync */,
 				FF0000000000000000000006 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -88,7 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				FF1000000000000000000008 /* Filekit.app */,
-				FF1000000000000000000009 /* FinderSync.appex */,
+				FF1000000000000000000009 /* FilekitFinderSync.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,14 +104,14 @@
 			path = Filekit;
 			sourceTree = "<group>";
 		};
-		FF0000000000000000000005 /* FinderSync */ = {
+		FF0000000000000000000005 /* FilekitFinderSync */ = {
 			isa = PBXGroup;
 			children = (
 				FF1000000000000000000005 /* FinderSync.swift */,
 				FF1000000000000000000006 /* Info.plist */,
-				FF1000000000000000000007 /* FinderSync.entitlements */,
+				FF1000000000000000000007 /* FilekitFinderSync.entitlements */,
 			);
-			path = FinderSync;
+			path = FilekitFinderSync;
 			sourceTree = "<group>";
 		};
 		FF0000000000000000000006 /* Frameworks */ = {
@@ -145,9 +145,9 @@
 			productReference = FF1000000000000000000008 /* Filekit.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FF4000000000000000000002 /* FinderSync */ = {
+		FF4000000000000000000002 /* FilekitFinderSync */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FF5000000000000000000003 /* Build configuration list for PBXNativeTarget "FinderSync" */;
+			buildConfigurationList = FF5000000000000000000003 /* Build configuration list for PBXNativeTarget "FilekitFinderSync" */;
 			buildPhases = (
 				FF3000000000000000000005 /* Sources */,
 				FF3000000000000000000006 /* Frameworks */,
@@ -157,9 +157,9 @@
 			);
 			dependencies = (
 			);
-			name = FinderSync;
-			productName = FinderSync;
-			productReference = FF1000000000000000000009 /* FinderSync.appex */;
+			name = FilekitFinderSync;
+			productName = FilekitFinderSync;
+			productReference = FF1000000000000000000009 /* FilekitFinderSync.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -195,7 +195,7 @@
 			projectRoot = "";
 			targets = (
 				FF4000000000000000000001 /* Filekit */,
-				FF4000000000000000000002 /* FinderSync */,
+				FF4000000000000000000002 /* FilekitFinderSync */,
 			);
 		};
 /* End PBXProject section */
@@ -241,7 +241,7 @@
 /* Begin PBXTargetDependency section */
 		FF6000000000000000000002 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = FF4000000000000000000002 /* FinderSync */;
+			target = FF4000000000000000000002 /* FilekitFinderSync */;
 			targetProxy = FF6000000000000000000001 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -426,13 +426,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_ENTITLEMENTS = FinderSync/FinderSync.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FilekitFinderSync/FilekitFinderSync.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FinderSync/Info.plist;
+				INFOPLIST_FILE = FilekitFinderSync/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Filekit;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © Mango Studios";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -454,13 +454,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
-				CODE_SIGN_ENTITLEMENTS = FinderSync/FinderSync.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FilekitFinderSync/FilekitFinderSync.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FinderSync/Info.plist;
+				INFOPLIST_FILE = FilekitFinderSync/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Filekit;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © Mango Studios";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -499,7 +499,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FF5000000000000000000003 /* Build configuration list for PBXNativeTarget "FinderSync" */ = {
+		FF5000000000000000000003 /* Build configuration list for PBXNativeTarget "FilekitFinderSync" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FF5000000000000000000008 /* Debug */,

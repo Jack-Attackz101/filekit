@@ -24,7 +24,7 @@ This repository was scaffolded so it opens on a Mac. It cannot be built on Linux
 1. Clone this repo and open **`Filekit.xcodeproj`** in Xcode (double-click it, or File → Open).
 2. Select the **Filekit** scheme (it builds the host app and embeds the Finder Sync extension).
 3. Select a connected Mac as the run destination.
-4. For **both** targets (**Filekit** and **FinderSync**), open Signing & Capabilities:
+4. For **both** targets (**Filekit** and **FilekitFinderSync**), open Signing & Capabilities:
    - Enable **Automatically manage signing**
    - Choose your **Team**
    - Leave bundle IDs as `com.mangostudios.filekit` and `com.mangostudios.filekit.FinderSync` unless those IDs are already taken on your team
@@ -103,7 +103,7 @@ In Console.app, filter for `Filekit Finder Sync loaded from`. That log is printe
 ```
 Filekit.xcodeproj          Xcode project (open this)
 Filekit/                   Host app (registers the extension)
-FinderSync/                Finder Sync extension (Copy Path)
+FilekitFinderSync/         Finder Sync extension (Copy Path)
 ```
 
 Bundle IDs:
@@ -111,7 +111,9 @@ Bundle IDs:
 | Target | Bundle ID |
 | --- | --- |
 | Filekit (host) | `com.mangostudios.filekit` |
-| FinderSync | `com.mangostudios.filekit.FinderSync` |
+| FilekitFinderSync | `com.mangostudios.filekit.FinderSync` |
+
+The extension target and product/module are named **FilekitFinderSync** so they do not collide with Apple’s `FinderSync` framework (`import FinderSync` / `FIFinderSync`).
 
 ## Why Finder Sync
 

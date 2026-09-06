@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FF4000000000000000000002"
-               BuildableName = "FinderSync.appex"
-               BlueprintName = "FinderSync"
+               BuildableName = "FilekitFinderSync.appex"
+               BlueprintName = "FilekitFinderSync"
                ReferencedContainer = "container:Filekit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
